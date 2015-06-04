@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603044334) do
+ActiveRecord::Schema.define(version: 20150604231733) do
+
+  create_table "bug_categories", force: true do |t|
+    t.integer "bug_id"
+    t.integer "category_id"
+  end
+
+  create_table "bugs", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "tenant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "resolved",   default: false
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enhancement_requests", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "tenant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "resolved",   default: false
+  end
 
   create_table "tenants", force: true do |t|
     t.string   "name"
@@ -21,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150603044334) do
     t.boolean  "has_pet",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "native_language"
   end
 
 end
