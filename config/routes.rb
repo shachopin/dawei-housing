@@ -1,5 +1,9 @@
 TenantManagement::Application.routes.draw do
-  resources :tenants
+  root to: 'tenants#index'
+  resources :tenants, except: [:destroy]
+  resources :bugs, except: [:destroy]
+  resources :enhancement_requests, except: [:destroy]
+  get "/diagnostics", to: "pages#diagnostics"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

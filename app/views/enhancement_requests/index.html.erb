@@ -1,0 +1,15 @@
+<%= render 'shared/content_title', title: "All Enhancement Requests" %>
+
+<% @enhancement_requests.each do |er| %>
+  <div class="row">
+    <div class='col-xs-8 well'>
+      
+      <h4><%= er.title %></h4>
+      <p><%= er.body %></p>
+      <p>
+       <span class="quiet">created by </span><%= link_to er.creator.name, tenant_path(er.creator) %>
+       <small>at <%= er.created_at %></small> 
+      </p>  
+    </div>
+  </div> 
+<% end %>

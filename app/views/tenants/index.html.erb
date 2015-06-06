@@ -1,2 +1,17 @@
-<h1> Welcome to my app!</h1>
-<a href="www.google.com" class="btn btn-primary">Click Me</a>
+<!--h1> Welcome to my app!</h1-->
+ <%= render 'shared/content_title', title: "All Tenants" %>
+  
+<% @tenants.each do |tenant| %>
+  <div class="row">
+    <div class='col-xs-8 well'>
+      <h4><%= link_to tenant.name, tenant.url %> -  <%= tenant.gender %></h4>
+      <p><%= tenant.job_description %></p>
+      <p>has_pet? - <%= tenant.has_pet %></p>
+      <p>
+        <span class='quiet'>has <%= tenant.bugs.size %> bugs assigned to you</span>
+      </p>
+      <small><%= link_to "check out this tenant's details", tenant_path(tenant) %></small>
+    </div>
+  </div> 
+<% end %>
+<!--a href="www.google.com" class="btn btn-primary">Click Me</a-->

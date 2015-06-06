@@ -1,4 +1,9 @@
-$jumbotron-bg: yellow;
+$jumbotron-bg: #bdc3c7;
+$well-bg: pink;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.quiet {
+  color: #ababab;
+}
