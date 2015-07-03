@@ -1,0 +1,28 @@
+<%= render 'shared/errors', object: @bug %>
+
+<div class="row">
+  <div class="well col-xs-6">  
+    <%= form_for @bug do |f| %>
+      <div class='form-group'>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      
+      <div class='form-group'>
+        <%= f.label :body %>
+        <%= f.text_area :body, class: 'form-control', rows: 5 %>
+      </div> 
+      <div class="control-group">
+        <%= f.label "Categories" %>
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+           <% cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox") + cb.text} %>
+        <% end %>
+        <br />
+        <br />
+      </div>
+      <%= f.submit @bug.new_record? ? "Submit Bug" : "Edit Bug", class: 'btn btn-primary' %>
+    <% end %> 
+  </div>
+</div>
+
+  

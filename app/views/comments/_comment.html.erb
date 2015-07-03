@@ -1,0 +1,12 @@
+<% show_which_bug_commented ||= false %>
+
+<div class="row">
+  <div class="well col-xs-6 <%="move-right-30px" unless show_which_bug_commented %>">
+    <em>"<%= preserve_linebreak comment.body %>"</em>
+    <% if show_which_bug_commented %>
+      on <%= link_to comment.bug.title, bug_path(comment.bug) %>
+    <% end %>
+    <br />
+    by <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= comment.created_at %>
+  </div>
+</div>

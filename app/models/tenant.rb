@@ -1,4 +1,5 @@
 class Tenant < ActiveRecord::Base
-  has_many :bugs
-  has_many :enhancement_requests
+  validates :name, presence: true
+  validates :contact, presence: true
+  validates :job_description, presence: true
 end

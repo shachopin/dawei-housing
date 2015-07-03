@@ -1,0 +1,82 @@
+<%= render 'shared/errors', object: @tenant %>
+
+<div class="row">
+  <div class="well col-xs-8">  
+    <%= form_for @tenant do |f| %>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <div class='form-group'>
+            <%=f.label :name%>
+            <%=f.text_field :name , class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="col-xs-4">
+          <div class='form-group'>
+            <%=f.label :gender %>
+            <div class="radio">
+              <label>
+                <%=f.radio_button :gender , 'male' %> 
+                Male
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <%=f.radio_button :gender , 'female'%> 
+                Female
+              </label>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <div class='form-group'>
+            <%=f.label :native_language, "What's your native language?"%>
+            <%=f.text_field :native_language , class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="col-xs-4">
+          <div class='form-group'>
+            <%=f.label :has_pet, 'Do you have any pets?' %>
+              <div class="radio">
+                <label>
+                  <%=f.radio_button :has_pet , true %> 
+                  Yes
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <%=f.radio_button :has_pet , false %> 
+                  No
+                </label>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <%=f.label :contact, "Best way to contact you" %>
+        <%=f.text_field :contact, class: 'form-control' %>
+      </div>
+
+
+      <div class='form-group'>
+        <%=f.label :url, "Do you have any linkedin or facebook link?"%>
+        <%=f.text_field :url , class: 'form-control' %>
+      </div>
+
+
+      <div class='form-group'>
+        <%=f.label :job_description, "Describe what you will be doing during your stay (work or school)?" %>
+        <%=f.text_area :job_description, class: 'form-control', rows: 5 %>
+      </div>
+
+
+      <%=f.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

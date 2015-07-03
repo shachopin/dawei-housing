@@ -22,3 +22,4 @@ el.innerHTML = msg;
 //http://coderberry.me/blog/2012/04/24/asset-pipeline-for-dummies/
 //http://flatuicolors.com/
 //http://www.gotealeaf.com/blog/rails-asset-pipeline-best-practices
+//http://stackoverflow.com/questions/27206835/adding-page-specific-css-to-rails-asset-pipeline  good resource explaining how to exclude asset file

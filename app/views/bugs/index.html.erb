@@ -1,16 +1,4 @@
-
 <%= render 'shared/content_title', title: "All Bugs" %>
 
-<% @bugs.each do |bug| %>
-  <div class="row">
-    <div class='col-xs-8 well'>
-      <%= render bug.categories %>
-      <h4><%= bug.title %></h4>
-      <p><%= bug.body %></p>
-      <p>
-       <span class="quiet">created by </span><%= link_to bug.creator.name, tenant_path(bug.creator) %>
-       <small>at <%= bug.created_at %></small> 
-      </p>  
-    </div>
-  </div> 
-<% end %>
+<%= render @bugs%>
+

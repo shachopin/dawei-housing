@@ -1,0 +1,30 @@
+<%=render 'shared/content_title', title: "profile of #{@user.username}" %>
+
+
+<div class="well">
+  <div class="dl-horizontal">
+    <dt>Username:</dt>
+    <dd><%= @user.username %></dd>
+    <dt>Time Zone:</dt>
+    <dd><%= @user.time_zone %> </dd>
+  </div>
+</div>
+
+<h5><%=@user.username%>'s Activity</h5>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%='active' if params[:tab].nil? %>">
+    <%= link_to "Bugs filed (#{@user.bugs.size})", user_path(@user) %>
+  </li>
+  <li role="presentation" class="<%='active' if params[:tab] == "comments" %>">  <!--notce here "comments" or 'comments' both work HTML doens't need you to escape it-->
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: "comments") %>
+  </li>
+</ul>
+
+<div class='move-right-20px'>
+  <% if params[:tab].nil? %>
+    <%= render @user.bugs %>
+  <% elsif params[:tab] == "comments" %>
+    <%= render @user.comments, show_which_bug_commented: true %>
+  <% end %>
+</div>

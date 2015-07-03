@@ -28,25 +28,10 @@
         <%= render 'shared/content_title', title: link_to("Apply Now", new_tenant_path) %></li>
 
       <% end %>
+      
+      <%= render 'form' %>
 
       
-      <% @tenants.each do |tenant| %>
-        <div class="row">
-          <div class='col-xs-8'>
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <h4><%= link_to "(#{tenant.status}) #{tenant.name}", fix_url(tenant.url) %> -  <%= tenant.gender %> - <%= pet_situation(tenant) %></h4>
-              </div>
-              <div class="panel-body">
-                <%= preserve_linebreak(tenant.job_description) %>  
-              </div>
-              <!--div class="panel-footer">
-                <%= link_to "check out this tenant's details", tenant_path(tenant) %> 
-              </div-->
-            </div>
-          </div>
-        </div> 
-      <% end %>
     </div>
   </body>
 </html>

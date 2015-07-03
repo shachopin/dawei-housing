@@ -1,9 +1,31 @@
 $jumbotron-bg: #bdc3c7;
-$well-bg: pink;
+$well-bg: #ecf0f1;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
 .quiet {
   color: #ababab;
+}
+
+.badge {
+  a, a:hover, a:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+
+.move-right-30px{
+  position: relative;
+  left: 30px;
+}
+
+.move-right-20px{
+  position: relative;
+  left: 20px;
 }

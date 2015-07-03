@@ -26,3 +26,110 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+FUNCTIONALITY
+
+0. navbar cleanup 
+  -> to know which is class active (just clicked) and which is not (using javascript or params??)
+  - error component is within the form partial
+  - create the dismissable flash message alert box in layout
+
+
+1. Tenants Application Flow - Tenant come in to apply through clicking on the apply button from main page. 
+  - won't see register/log in and anything else related to the site main content
+  - just submit the application form
+  - will see other applicants (both active and pending)
+  - application have a status field (by default will be pending - setup in migration file)
+  - keeping linebreak in user's submitted job description
+  - toggle between current applicant application form and viewing past applicants
+  - remove sensitive information from viewing past applicants page
+  - to make logic simpler, new tenant page and index tenant have NO layout. Still toggle between though
+  - use Radio Button for male/female, pets yes/no
+
+
+2. Support login/logout Flow
+  - If I am happy with the form info, I send them the register page and upon regiter, they immediately loggin
+  - only after login, they will see issues 
+  - Using bcrypt gem
+  - user has many comments, comment belongs to one creator
+  - user has have many bugs. bug belongs to one creator
+  - user register form -  this is a model backed form, using users controller, supports automatic loggin
+  - login form, uses session template and session controller, uses form_tag, not a model backed form
+  - use params[:username]||'' for username, but '' for password, use flash.now and render :new. 
+  - This way if the username is wrong, the old value will be kept
+  - no need for doing that for password. who wants to see dots anyway
+  - in application_controller.rb you have helper_method :current_user, :logged_in?. 
+  - So these two can be used in any views and any controllers both
+  - Use memoization def current_user ; @current_user ||= User.find(session[:user_id]) if session[:user_id] ; end
+  - def logged_in?;  !!current_user; end  to safe gurard UI components
+  - def require_user  to safe guard your routes, not a view helper
+
+
+3. Create Category
+  - Only logged in user can do that (has require_user in categoires_controller.rb)
+  - Categories and Bugs have many to many relations, using has many through :bug_categories
+  - show category page ->  posts partial, partial #2 (just like bug index page)
+  - breadcumb  html_safe on the second part
+  - bug index page -> bugs partial -> category partial(with badge), using partial #2
+  - Created categories will be on new bug page form shown as collection checkbox
+  - no editing the category. Only create, new and show
+  - dropdown list in navbar listing all the categories in the system (clicking drills down to show category page)
+
+
+4. Bug/Comment
+  - dropdown list showing All Bugs and create bug action
+  - bug index page -> bugs partial -> category partial(with badge), using partial #2
+  - preserve linebreaks on bug body on bug partial page
+  - bug has many comments, comment belongs to one bug
+  - Created categories will be on new bug page form shown as collection checkbox
+  - show bug page, has comment creation form (using nested routes on comments controller)
+  - show bug page -> comments partial (partial #2)
+  - require user on all bugs operations
+  - notice the subtle downside of using comment = bug.comments.build way. Memory miss allocation 
+  - comments partial will need to figure out if contained in show bug page or show user page.
+  - comments partial shown differently (offset) and also if in show user page, mention which post commented on
+
+
+5 User Management
+  - user has many bugs, user has many comments, bug/comment belongs to creator
+  - current_user being used everywhere whenever a creator is needed for bugs and comments
+  - show user profile page -> bugs partial page (in one tab)
+  - show user profile page -> comments partial page(in another tab)
+  - tab controlling using params and active class
+  - sending additional request param in link_to,  inside the path tab: "something"
+  - link back to show user profile page from bugs/comments
+  - require_same_user on UsersController on edit and update actions(notice setup_user is before require_same_user)
+  - also if not logged, will also caught by require_same_user here because current_user is nil, but setUser will return one
+  - time_zone (login with a time_zone)
+  - show user profile page will see time_zone
+  - edit user page can edit the time_zone
+  - helper method to show the timezone user specified
+  - if not logged in, or not choose a time_zone in user registery, then use default time zone
+
+
+6 Static Pages
+  - bootstrap_and_customize.css is included in application.css, hence will be showing in all pages
+  - diagnostic page is under pages, still with layout though, the whole page is using javascript
+  - remove the require . from application.js, so will not be included in every page that uses application.js
+  - create a new container customize.js
+  - containing window-object.js which has the logic
+  - register customize.js in application.rb (config.assets.precompile += %w(customize.js, jumbotron-narrow.css ))
+  - use that javascript in the diagnostic at the bottom (<%= javascript_include_tag("customize") %>) 
+  - because it needs the component to render first
+  - inspect the page, saw assets has customize.js and window-object.js
+  - without regiter, should still work in dev, but not production on heroku
+  - static page home page without layout
+  - home page needs <!--%= stylesheet_link_tag    "jumbotron-narrow", media: "all", "data-turbolinks-track" => true %-->
+  - better way by not remvoing requie . from application.css, but after which say *= stub jumbotron-narrow
+  - register jumbotron-narrow here in application.rb (config.assets.precompile += %w(customize.js, jumbotron-narrow.css ))
+  - inspect page, saw assets has jumbotron-narrow.css
+  - without register, should still work in dev, but not production on heroku
+  - in this case, I don't need jumbotron-narrow anymore, commented taht reference on the page  out 
+  - notice you only see them in assets when the page uses them. If you comment the references out, then won't see them in assets
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+<div class="row">
+    <div class='col-xs-8 well'>
+      <p class="pull-right">
+        <%= link_to "edit the bug", edit_bug_path(bug) %>
+      </p>
+      <%= render bug.categories %>
+      <h4><%= link_to bug.title, bug %></h4>
+      <p><%= preserve_linebreak bug.body %></p>
+      <p>
+        <span class="quiet">created by </span><%= link_to bug.creator.username, user_path(bug.creator) %>
+        <small>at <%= display_time bug.created_at %></small> 
+      </p>        
+    </div>
+</div> 
