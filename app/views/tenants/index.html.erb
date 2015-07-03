@@ -26,10 +26,8 @@
         <%= render 'shared/content_title', title: link_to("View Past Applicants", tenants_path) %></li>
       <% else %>
         <%= render 'shared/content_title', title: link_to("Apply Now", new_tenant_path) %></li>
-
       <% end %>
-
-      
+ 
       <% @tenants.each do |tenant| %>
         <div class="row">
           <div class='col-xs-8'>
@@ -39,6 +37,8 @@
               </div>
               <div class="panel-body">
                 <%= preserve_linebreak(tenant.job_description) %>  
+                <br />
+                <%= image_tag tenant.image.url(:medium) %>
               </div>
               <!--div class="panel-footer">
                 <%= link_to "check out this tenant's details", tenant_path(tenant) %> 
