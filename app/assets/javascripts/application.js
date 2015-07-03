@@ -14,5 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require masonry/jquery.masonry
+//= require masonry/jquery.imagesloaded.min
+//= require_tree .
+//= stub customize
+//= stub window-object
 
 

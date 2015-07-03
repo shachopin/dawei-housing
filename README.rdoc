@@ -128,7 +128,11 @@ FUNCTIONALITY
   - in this case, I don't need jumbotron-narrow anymore, commented taht reference on the page  out 
   - notice you only see them in assets when the page uses them. If you comment the references out, then won't see them in assets
 
-
+7 Imags upload
+  - Applicants can submit image
+  - use paperclip and imagemagic 
+  - use jquery masonry (coffeescript as the js file to active jquery masonry effect)
+  - use transition css
 
 
 

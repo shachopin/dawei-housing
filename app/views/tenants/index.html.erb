@@ -28,7 +28,7 @@
         <%= render 'shared/content_title', title: link_to("Apply Now", new_tenant_path) %></li>
       <% end %>
  
-      <% @tenants.each do |tenant| %>
+      <!--<% @tenants.each do |tenant| %>
         <div class="row">
           <div class='col-xs-8'>
             <div class="panel panel-success">
@@ -40,13 +40,31 @@
                 <br />
                 <%= image_tag tenant.image.url(:medium) %>
               </div>
-              <!--div class="panel-footer">
+              <div class="panel-footer">
                 <%= link_to "check out this tenant's details", tenant_path(tenant) %> 
-              </div-->
+              </div>
             </div>
           </div>
         </div> 
-      <% end %>
+      <% end %>-->
+
+      <div id="tenants" class="transitions-enabled">
+        <% @tenants.each do |tenant| %>
+          <div class="box panel panel-default">
+            <%= image_tag tenant.image.url(:medium) %>
+            <div class="panel-body">
+              <%= link_to "(#{tenant.status}) #{tenant.name}", fix_url(tenant.url) %> -  <%= tenant.gender %> - <%= pet_situation(tenant) %>
+            </div>
+            <div class="panel-footer">
+                <%= preserve_linebreak(tenant.job_description) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+
+
+
     </div>
   </body>
 </html>

@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'paperclip', '~> 4.2'
+gem 'masonry-rails'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

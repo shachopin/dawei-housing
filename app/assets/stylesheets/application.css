@@ -11,4 +11,5 @@
  *= require_self
  *= require_tree .
  *= stub jumbotron-narrow
+ *= require 'masonry/transitions'
  */
