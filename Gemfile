@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'paperclip', '~> 4.2'
 gem 'masonry-rails'
+gem 'aws-sdk', '< 2.0'
 
 
 group :doc do
