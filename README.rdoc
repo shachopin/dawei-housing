@@ -133,6 +133,7 @@ FUNCTIONALITY
   - use paperclip and imagemagic 
   - use jquery masonry (coffeescript as the js file to active jquery masonry effect)
   - use transition css
+  - integrated with Amazon S3 service, because heroku won't store your pictures for long, only just a short period of time
 
 
 
