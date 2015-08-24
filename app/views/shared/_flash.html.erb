@@ -1,0 +1,13 @@
+<% some_html_text = 
+    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"
+      <span aria-hidden="true">x</span>
+    </button>' 
+%>
+  
+<% if flash.keys.any? %>
+  <div class="row">
+    <% flash.each do |k,v| %>
+      <%= content_tag :div, some_html_text.html_safe+v, class:"col-xs-6 alert alert-#{k} alert-dismissible fade in" %>
+    <% end %>
+  </div>
+<% end %>

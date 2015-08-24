@@ -8,8 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 
-
- <body>
+<body>
 
     <div class="container">
       <div class="header clearfix">
@@ -28,7 +27,7 @@
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         
         <div class="center">
-          <%= link_to "Check my home", new_tenant_path, class: "btn btn-lg btn-primary", role: "button" %>
+          <%= link_to "Check my home", rooms_path, class: "btn btn-lg btn-primary", role: "button" %>
           <%= link_to "Apply today", new_tenant_path, class: "btn btn-lg btn-success", role: "button" %>
         </div>
       </div>
@@ -65,14 +64,5 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-
-
-
-
+</body>
 </html>
-
-
-
-
-</div>

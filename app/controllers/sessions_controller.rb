@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
       # use params[:username]||'' for username, but '' for password, use flash.now and render :new. 
       # This way if the username is wrong, the old value will be kept
       # no need for password field. Who wants to see dots anyway
-
     end
   end
 

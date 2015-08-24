@@ -1,16 +1,28 @@
 TenantManagement::Application.routes.draw do
   root to: "pages#home"
-  resources :tenants, except: [:destroy]
+  resources :tenants, except: [:destroy] do
+    resources :tenant_comments, only: [:create]
+  end
+
+  resources :rooms, except: [:destroy] do
+    resources :room_comments, only: [:create]
+  end
+
   resources :bugs, except: [:destroy] do
     resources :comments, only: [:create]
   end
-  resources :categories, only: [:create, :new, :show]
-  get "/diagnostics", to: "pages#diagnostics"
+
+
+  resources :categories, only: [:create, :new, :show] 
+
+
   resources :users, only: [:show, :create, :update, :edit]
   get 'register', to: 'users#new'
   get 'login', to: "sessions#new"
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
+
+  get "/diagnostics", to: "pages#diagnostics"
   
   # system generated comments:
   #--------------------------------------------------

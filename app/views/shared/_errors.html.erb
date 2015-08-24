@@ -5,11 +5,11 @@
         <span aria-hidden="true">x</span>
       </button>
       <h5>There are some error</h5>
-        <ul>
-          <% object.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
+      <ul>
+        <% object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 <% end %>

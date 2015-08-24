@@ -1,86 +1,109 @@
 <%= render 'shared/errors', object: @tenant %>
 
 <div class="row">
-  <div class="well col-xs-8">  
+  <div class="col-xs-12 well">  
     <%= form_for @tenant, html: {multipart: true} do |f| %>
 
       <div class="row">
-        <div class="col-xs-8">
-          <div class='form-group'>
-            <%=f.label :name%>
-            <%=f.text_field :name , class: 'form-control' %>
-          </div>
-        </div>
-
-        <div class="col-xs-4">
-          <div class='form-group'>
-            <%=f.label :gender %>
-            <div class="radio">
-              <label>
-                <%=f.radio_button :gender , 'male' %> 
-                Male
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <%=f.radio_button :gender , 'female'%> 
-                Female
-              </label>
-              </div>
-          </div>
+        <div class='col-xs-4 form-group'>
+          <%=f.label :start_date, "Start date" %>
+          <%=f.date_select :start_date, class: 'form-control' %>
+        </div>    
+        <div class='col-xs-4 form-group'>
+          <%=f.label :end_date, "End date" %>
+          <%=f.date_select :end_date, class: 'form-control' %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-xs-8">
-          <div class='form-group'>
-            <%=f.label :native_language, "What's your native language?"%>
-            <%=f.text_field :native_language , class: 'form-control' %>
+        <div class='col-xs-4 form-group'>
+          <%=f.label :name%>
+          <%=f.text_field :name , class: 'form-control' %>
+        </div>
+
+        <div class='col-xs-4 form-group'>
+          <%=f.label :gender %>
+          <div class="radio">
+            <label>
+              <%=f.radio_button :gender , 'male' %> 
+              Male
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%=f.radio_button :gender , 'female'%> 
+              Female
+            </label>
           </div>
         </div>
 
-        <div class="col-xs-4">
-          <div class='form-group'>
-            <%=f.label :has_pet, 'Do you have any pets?' %>
-              <div class="radio">
-                <label>
-                  <%=f.radio_button :has_pet , true %> 
-                  Yes
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <%=f.radio_button :has_pet , false %> 
-                  No
-                </label>
-              </div>
+        <div class='col-xs-4 form-group'>
+          <%=f.label :has_pet, 'Do you have any pets' %>
+          <div class="radio">
+            <label>
+              <%=f.radio_button :has_pet , true %> 
+              Yes
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%=f.radio_button :has_pet , false %> 
+              No
+            </label>
           </div>
         </div>
       </div>
 
-      <div class='form-group'>
-        <%=f.label :contact, "Best way to contact you" %>
-        <%=f.text_field :contact, class: 'form-control' %>
+
+      <div class="row">
+       
+        <div class='col-xs-4 form-group'>
+          <%=f.label :native_language, "Where are you from"%>
+          <%=f.text_field :native_language , class: 'form-control' %>
+        </div>
+      
+
+        
+        <div class='col-xs-4 form-group'>
+          <%=f.label :contact, "Best way to contact you" %>
+          <%=f.text_field :contact, class: 'form-control' %>
+        </div>
+        
+
+
+        <div class='col-xs-4 form-group'>
+          <%=f.label :url, "Do you have any linkedin or facebook link"%>
+          <%=f.text_field :url , class: 'form-control' %>
+        </div>
+
       </div>
 
+      <div class="row">
+        <div class='col-xs-4 form-group'>
+          <%=f.label :job_description, "What's the purpose of your visit" %>
+          <%=f.text_area :job_description, class: 'form-control', rows: 5 %>
+        </div>
 
-      <div class='form-group'>
-        <%=f.label :url, "Do you have any linkedin or facebook link?"%>
-        <%=f.text_field :url , class: 'form-control' %>
+        <div class='col-xs-4 form-group'>
+          <%=f.label :comment, "Anything else that I should know" %>
+          <%=f.text_area :comment, class: 'form-control', rows: 5 %>
+        </div>
+
+        <div class='col-xs-4 form-group'>
+          <%=f.label :image, "Upload a recent picture of yours" %>
+          <%=f.file_field :image, class: 'form-control' %>
+        </div>
       </div>
 
-
+      <% if logged_in_as_shachopin? %>
+      <hr />
       <div class='form-group'>
-        <%=f.label :job_description, "Describe what you will be doing during your stay (work or school)?" %>
-        <%=f.text_area :job_description, class: 'form-control', rows: 5 %>
+          <%=f.label :status, "Current Status" %>
+          <%=f.text_field :status, class: 'form-control' %>
       </div>
+      <% end %>
 
-      <div class='form-group'>
-        <%=f.label :image, "Upload a recent picture of yours" %>
-        <%=f.file_field :image, class: 'form-control' %>
-      </div>
-
-
+      
       <%=f.submit 'Submit', class: 'btn btn-primary' %>
     <% end %>
   </div>

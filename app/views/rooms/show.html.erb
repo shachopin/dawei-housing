@@ -1,0 +1,13 @@
+<%= render "shared/content_title", title:"Room Detail" %>
+
+<% if logged_in_as_shachopin? %>
+  <p class="pull-right">
+  [<%= link_to 'edit this room', edit_room_path(@room) %>]
+  </p>
+<% end %>
+
+<h3><%= @room.title %></h3>
+
+<%= image_tag @room.image.url(:original) %>
+<br />
+<%= preserve_linebreak @room.description %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703185730) do
+ActiveRecord::Schema.define(version: 20150824043042) do
 
   create_table "announcements", force: true do |t|
     t.string   "title"
@@ -49,6 +49,26 @@ ActiveRecord::Schema.define(version: 20150703185730) do
     t.datetime "updated_at"
   end
 
+  create_table "rooms", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "summary"
+    t.string   "status"
+  end
+
+  create_table "tenant_comments", force: true do |t|
+    t.text     "body"
+    t.integer  "tenant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tenants", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -64,6 +84,9 @@ ActiveRecord::Schema.define(version: 20150703185730) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "comment"
   end
 
   create_table "users", force: true do |t|

@@ -1,1 +1,37 @@
 <%= render 'shared/content_title', title: @tenant.name+"'s details" %>
+
+<% if logged_in_as_shachopin? %>
+  <p class="pull-right">
+  [<%= link_to 'edit this tenant', edit_tenant_path(@tenant) %>]
+  </p>
+<% end %>
+
+<%= render 'shared/errors', object: @tenant_comment %>
+
+<%= image_tag @tenant.image.url(:medium) %>
+
+
+<% if logged_in_as_shachopin? %>
+  
+  <%= form_for [@tenant, @tenant_comment] do |f| %>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <%= f.label :body, "Leave a comment" %>
+        <%= f.text_area :body, rows: 3, class: "form-control" %>
+      </div>
+    </div>
+    <%=f.submit "Create Comment", class: 'btn btn-primary' %>
+  <% end %>
+  
+  
+  <hr />
+
+  <h5>Notes</h5>
+  <% @tenant.tenant_comments.each do |comment| %>
+    <div class="row">
+      <div class="well col-xs-6">
+        <em>"<%=preserve_linebreak comment.body %>"</em> 
+      </div>
+    </div>
+  <% end %>
+<% end %>

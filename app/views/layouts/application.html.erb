@@ -1,36 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TenantManagement</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-
-<%= render 'layouts/navbar' %>
-
-<!-- for the flash message and enable the customer to close the box-->
-<div class="container">
-  <% some_html_text = 
-    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"
-      <span aria-hidden="true">x</span>
-    </button>' 
-  %>
-  
-  <div class="row">
-    <% if flash.keys.any? %>
-      <% flash.each do |k,v| %>
-        <%= content_tag :div, some_html_text.html_safe+v, class:"col-xs-8 alert alert-#{k} alert-dismissible fade in" %>
-      <% end %>
+  <head>
+    <title>TenantManagement</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <% if params[:show_application_only] == true %>
+      <%= render 'layouts/navbar2' %>
+    <% else %>
+      <%= render 'layouts/navbar' %>
     <% end %>
-  </div>
-  <!--div class="jumbotron"-->
-  <%= yield %>
-  <!--/div-->
-</div>
-</body>
+
+    <div class="container">
+      <!-- for the flash message and enable the customer to close the box-->
+      <%= render 'shared/flash' %>
+      <!--div class="jumbotron"-->
+      <%= yield %>
+      <!--/div-->
+    </div>
+  </body>
 </html>
 
 
