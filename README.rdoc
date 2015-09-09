@@ -128,12 +128,24 @@ FUNCTIONALITY
   - in this case, I don't need jumbotron-narrow anymore, commented taht reference on the page  out 
   - notice you only see them in assets when the page uses them. If you comment the references out, then won't see them in assets
 
-7 Imags upload
+7 Images upload
   - Applicants can submit image
   - use paperclip and imagemagic 
   - use jquery masonry (coffeescript as the js file to active jquery masonry effect)
   - use transition css
   - integrated with Amazon S3 service, because heroku won't store your pictures for long, only just a short period of time
+
+8 I (shachopin) can upload image of my rooms
+
+9 shachopin user is the only one who can set approval status for applicant and edit image for rooms
+
+10 there is only 1 background for only 1 page which is the home page
+
+11 random user can vote the pic of rooms
+
+12 for rooms and tenants, you can filter by certain status strings
+
+
 
 
 
