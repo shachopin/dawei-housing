@@ -1,12 +1,12 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update]
+  before_action :set_room, only: [:show, :edit, :update, :like]
   before_action :set_show_application_only_param, only: [:index, :show, :new, :create, :update, :edit]
 
   def index
     if params[:status]
-      @rooms = Room.where(status: params[:status])
+      @rooms = Room.where(status: params[:status]).sort_by{|room|room.like_true_size}.reverse
     else
-      @rooms = Room.all
+      @rooms = Room.all.sort_by{|room|room.like_true_size}.reverse
     end
   end
 
@@ -34,6 +34,21 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
     else
       render :edit
+    end
+  end
+
+  def like
+    like = Like.create(likeable: @room, like: params[:like]) 
+    respond_to do |format| 
+      format.html do
+        if like.valid?
+          flash[:success] = "Your like was counted"
+        else
+          flash[:warning]  = "Youe like was not counted"
+        end 
+        redirect_to :back
+      end
+      format.js
     end
   end
 

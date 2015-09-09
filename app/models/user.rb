@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: true, length: {minimum: 5}
   validates :password, presence: true, on: :create, length: {minimum: 5}
+
+  has_many :likes
+
 end

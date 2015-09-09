@@ -1,0 +1,4 @@
+$('#room_<%= @room.id %>_likes').html('<%= @room.like_true_size %>');
+$('#room_<%= @room.id %>_dislikes').html('<%= @room.like_false_size %>');
+$('#room_<%= @room.id %>_total').html('<%= @room.votes_total %>');
+$('#room_<%= @room.id %>_difference').html('<%= @room.votes_difference%>');

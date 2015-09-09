@@ -32,10 +32,9 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-4 form-group">
-        <%=f.label :status, "room status" %>
-        <%=f.text_field :status, class: 'form-control' %>
-      </div>
+      <div class='col-xs-4 form-group'>
+        <%=f.label :status, "Current Status" %>
+        <%=f.select :status, options_for_select([['Taken', 'Taken'],['Available', 'Available']], @room.status), class: 'form-control' %>  <!--before class, you can have {include_blank: true} so by default nothing will be selected, IF YOUR DATABASE TABLE HAS NO DEFAULT DATA, right now the status column is defaulted to Pending, which is why Pending is selected during new application form-->
     </div>
 
     <%= f.submit "submit", class: "btn btn-primary" %>

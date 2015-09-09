@@ -1,10 +1,12 @@
 TenantManagement::Application.routes.draw do
   root to: "pages#home"
+
   resources :tenants, except: [:destroy] do
     resources :tenant_comments, only: [:create]
   end
 
   resources :rooms, except: [:destroy] do
+    member {post :like}
     resources :room_comments, only: [:create]
   end
 
@@ -12,9 +14,7 @@ TenantManagement::Application.routes.draw do
     resources :comments, only: [:create]
   end
 
-
   resources :categories, only: [:create, :new, :show] 
-
 
   resources :users, only: [:show, :create, :update, :edit]
   get 'register', to: 'users#new'
@@ -23,6 +23,8 @@ TenantManagement::Application.routes.draw do
   get 'logout', to: 'sessions#destroy'
 
   get "/diagnostics", to: "pages#diagnostics"
+
+
   
   # system generated comments:
   #--------------------------------------------------

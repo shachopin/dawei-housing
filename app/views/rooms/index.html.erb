@@ -22,6 +22,21 @@
           <% if logged_in_as_shachopin?  %>
             <%= link_to "[Edit]", edit_room_path(room) %>
           <% end %>
+          <br>
+          <br>
+          <%= link_to like_room_path(room, like: true), method: 'post', remote: true do %>
+            <span class='glyphicon glyphicon-thumbs-up'></span>
+            <span id="room_<%=room.id %>_likes"><%= room.like_true_size %></span>
+            </span>
+          <% end %>
+          <%= link_to like_room_path(room, like: false), method: 'post', remote: true do %>
+            <span class='glyphicon glyphicon-thumbs-down'></span>
+            <span id="room_<%=room.id %>_dislikes"><%= room.like_false_size %></span>
+          <% end %>
+          <span class='glyphicon glyphicon-plus-sign'></span>
+          <span id="room_<%=room.id %>_total"><%= room.votes_total %></span>
+          <span class='glyphicon glyphicon-minus-sign'></span>
+          <span id="room_<%=room.id %>_difference"><%= room.votes_difference %></span>
         </h3>
       </div>
       <div class="panel-body">
