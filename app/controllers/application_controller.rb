@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def access_refused
     flash[:warning] = "You must be the host to do that"
-    redirect_to tenants_path(show_application_only: true)
+    redirect_to rooms_path
   end
 
 end

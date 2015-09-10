@@ -4,7 +4,8 @@ class Room < ActiveRecord::Base
   has_attached_file :image, styles: {large: "550x550>", medium: "300x300>  ", thumb:"100x100>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable, dependent: :destroy
+  has_many :room_comments, dependent: :destroy
 
   def like_true_size
     likes.where(like: true).size

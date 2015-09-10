@@ -3,10 +3,14 @@
 <div class="row">
   <div class="well col-xs-6 <%="move-right-30px" unless show_which_bug_commented %>">
     <em>"<%= preserve_linebreak comment.body %>"</em>
+    <% if logged_in_as_shachopin? %>
+      <%= link_to "Delete", bug_comment_path(comment.bug, comment), method: "delete", confirm: "Are you sure?" %>
+    <% end %>
     <% if show_which_bug_commented %>
       on <%= link_to comment.bug.title, bug_path(comment.bug) %>
     <% end %>
     <br />
     by <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= comment.created_at %>
   </div>
+  
 </div>

@@ -1,4 +1,5 @@
 class TenantsController < ApplicationController
+  before_action :set_tenant, only: [:show, :create, :edit, :update, :destroy]
   before_action :require_shachopin_user, only:[:edit, :update]
   before_action :set_show_application_only_param, only:[:new, :index, :create, :show, :edit, :update]
 
@@ -11,7 +12,6 @@ class TenantsController < ApplicationController
   end
 
   def show
-    @tenant = Tenant.find(params[:id])
     @tenant_comment = TenantComment.new
   end
 
@@ -25,16 +25,13 @@ class TenantsController < ApplicationController
     end
   end
 
-  def edit
-    @tenant = Tenant.find(params[:id])
-  end
+  def edit; end
 
   def new
     @tenant = Tenant.new
   end
 
   def update
-    @tenant = Tenant.find(params[:id])
     if @tenant.update(tenant_params)
       flash[:success] = "You succeefully edited the application"
       redirect_to tenants_path
@@ -43,8 +40,18 @@ class TenantsController < ApplicationController
     end
   end
 
+  def destroy
+    @tenant.destroy
+    flash[:success] = "You deleted an appliant from the database"
+    redirect_to tenants_path
+  end
+
 
   private
+
+  def set_tenant
+    @tenant = Tenant.find(params[:id])
+  end
   
   def tenant_params
     params.require(:tenant).permit!

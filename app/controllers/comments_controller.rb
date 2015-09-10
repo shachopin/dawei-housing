@@ -17,4 +17,12 @@ class CommentsController < ApplicationController
       render 'bugs/show'
     end
   end
+
+  def destroy
+    @bug = Bug.find(params[:bug_id])
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    flash[:success] = "You have successfully deleted a comment from the database"
+    redirect_to bug_path(@bug)
+  end
 end

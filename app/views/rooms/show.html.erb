@@ -6,6 +6,8 @@
   </p>
 <% end %>
 
+<%= render 'shared/errors', object: @room_comment %>
+
 <h3><%= @room.title %></h3>
 
 <%= image_tag @room.image.url(:original) %>
@@ -13,3 +15,31 @@
 <br />
 
 <%= preserve_linebreak @room.description %>
+
+ 
+<%= form_for [@room, @room_comment] do |f| %>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <%= f.label :body, "Leave a comment" %>
+      <%= f.text_area :body, rows: 3, class: "form-control" %>
+    </div>
+  </div>
+  <%=f.submit "Create Comment", class: 'btn btn-primary' %>
+<% end %>
+
+
+<hr />
+
+<h5>Comments</h5>
+<% @room.room_comments.each do |comment| %>
+  <div class="row">
+    <div class="well col-xs-6">
+      <em>"<%=preserve_linebreak comment.body %>"</em> 
+    </div>
+    <% if logged_in_as_shachopin? %>
+      <div class="col-xs-1">
+        <%= link_to "Delete", room_room_comment_path(@room, comment), method: "delete", confirm: "Are you sure?" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

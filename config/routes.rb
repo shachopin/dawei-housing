@@ -1,17 +1,17 @@
 TenantManagement::Application.routes.draw do
   root to: "pages#home"
 
-  resources :tenants, except: [:destroy] do
+  resources :tenants do
     resources :tenant_comments, only: [:create]
   end
 
-  resources :rooms, except: [:destroy] do
+  resources :rooms do
     member {post :like}
-    resources :room_comments, only: [:create]
+    resources :room_comments, only: [:create, :destroy]
   end
 
-  resources :bugs, except: [:destroy] do
-    resources :comments, only: [:create]
+  resources :bugs do
+    resources :comments, only: [:create, :destroy]
   end
 
   resources :categories, only: [:create, :new, :show] 

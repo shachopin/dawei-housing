@@ -1,8 +1,11 @@
 <div class="row">
     <div class='col-xs-8 well'>
-      <p class="pull-right">
-        <%= link_to "edit the bug", edit_bug_path(bug) %>
-      </p>
+      <% if bug.creator== current_user||logged_in_as_shachopin? %>
+        <p class="pull-right">
+          <%= link_to "[edit the bug]", edit_bug_path(bug) %>
+          <%= link_to "[delete the bug]", bug_path(bug), method: "delete", confirm: "Are you sure?" %>
+        </p>
+      <% end %>
       <%= render bug.categories %>
       <h4><%= link_to bug.title, bug %></h4>
       <p><%= preserve_linebreak bug.body %></p>

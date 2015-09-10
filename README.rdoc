@@ -30,26 +30,49 @@ Please feel free to use a different markup language if you do not plan to run
 
 FUNCTIONALITY
 
-0. navbar cleanup 
+-1. navbar cleanup 
   -> to know which is class active (just clicked) and which is not (using javascript or params??)
-  - error component is within the form partial
-  - create the dismissable flash message alert box in layout
+  - error component in the shared folder and referenced by the form partial
+  - create the dismissable flash message alert box under shaed and referenced in layout
+  - create two navbar partials in layouts folder, navbar for internal manageent system, navbar2 for external application system
+
+0. Room CRUD
+  - random user can like or dislike the pic of room. Rails server generated JavaScript enabled (for likes/dislikes/total/differences calculations) 
+  - navbar should always be the one for application_only true
+  - Only shachopin user can create a new room
+  - use dropdownlist for Taken or Available, only shachopin user can do so. Default it's available
+  - sort it by the number of likes and then reverse the order
+  - only shachopin can edit the room
+  - all user can filter by status to view rooms (by passing the query params to the room_path method)
+  - in the show room page, any user can comment on the room (only shachopin can delete comments though)
+  - masonry enabled for view rooms page
+  - enabled to delete a room, along with all room_comments as dependent
+  - only shachopin can delete a room or delete a comment on a particular room
+  - when deleting the room, also deleteing all the room_comments and deleting likes as dependent
 
 
 1. Tenants Application Flow - Tenant come in to apply through clicking on the apply button from main page. 
   - won't see register/log in and anything else related to the site main content
   - just submit the application form
-  - will see other applicants (both active and pending)
+  - can upload a picture
+  - will see other applicants (both approved and pending)
   - application have a status field (by default will be pending - setup in migration file)
   - keeping linebreak in user's submitted job description
   - toggle between current applicant application form and viewing past applicants
   - remove sensitive information from viewing past applicants page
-  - to make logic simpler, new tenant page and index tenant have NO layout. Still toggle between though
+  - still have a layout with navbar2, different from navbar, shown when params[:show_application_only] == true. Done by set_show_application_only_param before_action in controller
   - use Radio Button for male/female, pets yes/no
+  - use dropdownlist for approved or pending, only shachopin user can do so
+  - only shachopin can edit application form
+  - all user can filter by status to view tenants (by passing the query params to the tenants_path method)
+  - in the show tenant page, can comment on the applicant (only shachopin can view and write comments)
+  - masonry enabled for view tenants page
+  - enabled to delete a tenant, along with all tenant_comments by shachopin as dependent
+  - only shachopin can delete
 
 
 2. Support login/logout Flow
-  - If I am happy with the form info, I send them the register page and upon regiter, they immediately loggin
+  - If I am happy with the form info, I send them the register page and upon regiter, they are automatically logged in
   - only after login, they will see issues 
   - Using bcrypt gem
   - user has many comments, comment belongs to one creator
@@ -89,7 +112,9 @@ FUNCTIONALITY
   - notice the subtle downside of using comment = bug.comments.build way. Memory miss allocation 
   - comments partial will need to figure out if contained in show bug page or show user page.
   - comments partial shown differently (offset) and also if in show user page, mention which post commented on
-
+  - shachopin user should be able to delete all Bugs, edit all bugs or delete all comments regardign a bug
+  - bug creator should be able to edit the bug or delete the bug
+  - delete a bug means also delete all the comments associated to it and the bug_categories
 
 5 User Management
   - user has many bugs, user has many comments, bug/comment belongs to creator
@@ -128,22 +153,19 @@ FUNCTIONALITY
   - in this case, I don't need jumbotron-narrow anymore, commented taht reference on the page  out 
   - notice you only see them in assets when the page uses them. If you comment the references out, then won't see them in assets
 
+
 7 Images upload
-  - Applicants can submit image
   - use paperclip and imagemagic 
   - use jquery masonry (coffeescript as the js file to active jquery masonry effect)
   - use transition css
   - integrated with Amazon S3 service, because heroku won't store your pictures for long, only just a short period of time
+  - never git push these images, git ignore them
 
-8 I (shachopin) can upload image of my rooms
 
-9 shachopin user is the only one who can set approval status for applicant and edit image for rooms
+8 there is only 1 background for only 1 page which is the home page
+  - use img-url helper in the background.css.scss
+  - register in application.rb as background.css
 
-10 there is only 1 background for only 1 page which is the home page
-
-11 random user can vote the pic of rooms
-
-12 for rooms and tenants, you can filter by certain status strings
 
 
 

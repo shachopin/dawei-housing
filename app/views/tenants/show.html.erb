@@ -10,7 +10,6 @@
 
 <%= image_tag @tenant.image.url(:medium) %>
 
-
 <% if logged_in_as_shachopin? %>
   
   <%= form_for [@tenant, @tenant_comment] do |f| %>

@@ -18,6 +18,7 @@
         <br />
         <% if logged_in_as_shachopin? %>
           <%= link_to "[Edit]", edit_tenant_path(tenant) %>
+          <%= link_to "[Delete]", tenant_path(tenant), method: "delete", confirm: "Are you sure?" %>
           <br />
           <%= tenant.contact %>
           <br />

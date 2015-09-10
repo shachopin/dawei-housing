@@ -17,17 +17,17 @@
         <ul class="nav navbar-nav">
           <% if logged_in? %>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bugs <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Issues <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">            
                 <li>
-                   <li><%= link_to "All Bugs", bugs_path %></li>
+                   <li><%= link_to "All Issues", bugs_path %></li>
                 </li>
             
                 <li class="divider"></li>
 
                 <li>
                   <%= link_to new_bug_path do %>
-                    <span class="glyphicon glyphicon-plus"></span> Create a bug 
+                    <span class="glyphicon glyphicon-plus"></span> Create an issue
                   <% end %>      
                 </li>
 
@@ -91,7 +91,7 @@
             <li><%= link_to "Log in", login_path %></li>
           <% end %>
 
-          <% if logged_in? %>   <!--diagnostics page needs login and admin role-->
+          <% if logged_in_as_shachopin? %>   <!--diagnostics page needs login and admin role-->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Misc Pages <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

@@ -1,7 +1,6 @@
 class TenantCommentsController < ApplicationController
   before_action :set_show_application_only_param, only:[:create]
   def create
-
     @tenant = Tenant.find(params[:tenant_id])
     #@comment = @bug.comments.build(params.require(:comment).permit(:body))
     # or

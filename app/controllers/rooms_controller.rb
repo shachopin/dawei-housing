@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :like]
+  before_action :set_room, only: [:show, :edit, :update, :like, :destroy]
+  before_action :require_shachopin_user, only:[:edit, :update, :new, :create]
   before_action :set_show_application_only_param, only: [:index, :show, :new, :create, :update, :edit]
 
   def index
@@ -10,7 +11,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  def show;end
+  def show
+    @room_comment = RoomComment.new
+  end
 
   def new
     @room = Room.new
@@ -50,6 +53,12 @@ class RoomsController < ApplicationController
       end
       format.js
     end
+  end
+
+  def destroy
+    @room.destroy
+    flash[:success] = "You successfully deleted a room from the database"
+    redirect_to rooms_path
   end
 
   private 

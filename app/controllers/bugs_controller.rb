@@ -1,6 +1,7 @@
 class BugsController < ApplicationController
   before_action :require_user
-  before_action :set_bug, only: [:edit, :update, :show]
+  before_action :set_bug, only: [:edit, :update, :show, :destroy]
+  before_action :require_creator_or_shachopin, only: [:edit, :update]
 
 
   def index
@@ -37,6 +38,12 @@ class BugsController < ApplicationController
     @comment = Comment.new
   end
 
+  def destroy
+    @bug.destroy
+    flash[:success] = "You have successfully deleted an issue from the database"
+    redirect_to bugs_path
+  end
+
   private
 
   def bug_params
@@ -45,5 +52,12 @@ class BugsController < ApplicationController
 
   def set_bug
     @bug = Bug.find(params[:id]) 
+  end
+
+  def require_creator_or_shachopin
+    unless logged_in_as_shachopin? || current_user == @bug.creator
+      flash[:warning] = "You have no right to do that"
+      redirect_to bugs_path
+    end
   end
 end
