@@ -1,5 +1,5 @@
 class TenantsController < ApplicationController
-  before_action :set_tenant, only: [:show, :create, :edit, :update, :destroy]
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :require_shachopin_user, only:[:edit, :update]
   before_action :set_show_application_only_param, only:[:new, :index, :create, :show, :edit, :update]
 
